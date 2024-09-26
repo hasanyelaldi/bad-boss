@@ -57,6 +57,17 @@
         </div>
       </div>
 
+      <div class="salary-comparison">
+        <div>
+          <h3>Avg. Salary Before Layoff</h3>
+          <p>{{ users?.length > 0 ? calculateAvarageSalary(users) : 0 }} €</p>
+        </div>
+        <div>
+          <h3>Avg. Salary After Layoff</h3>
+          <p>{{ users?.length > 0 ? calculateAvarageSalary(users.filter(user => !selectedUsers.includes(user))) : 0}} €</p>
+        </div>
+      </div>
+
       <!-- Confirm Button -->
       <div v-if="selectedUsers.length > 0" class="confirm-container">
         <button @click="confirmLayoff" class="confirm-button">Confirm Layoff</button>
@@ -107,7 +118,6 @@ export default {
         { frontend: 0, backend: 0, test: 0, devops: 0 }
       );
       
-
       const count = users.length;
       return {
         frontend: totals.frontend / count,
@@ -115,6 +125,12 @@ export default {
         test: totals.test / count,
         devops: totals.devops / count,
       };
+    },
+    calculateTotalSalary(users) {
+      return users.reduce((acc, user) => acc + Number(user.salary), 0);
+    },
+    calculateAvarageSalary(users) {
+      return this.calculateTotalSalary(users) / users.length;
     },
     drawRadarChart(svgId, data) {
       const svg = document.getElementById(svgId);
@@ -249,6 +265,14 @@ h2 {
 svg {
   width: 200px;
   height: 200px;
+}
+
+.salary-comparison {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .confirm-container {
