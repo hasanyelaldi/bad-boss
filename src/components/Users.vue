@@ -12,6 +12,7 @@
           <th>Backend</th>
           <th>Test</th>
           <th>DevOps</th>
+          <th>Salary</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -23,6 +24,7 @@
           <td>{{ user.backend }}</td>
           <td>{{ user.test }}</td>
           <td>{{ user.devops }}</td>
+          <td>{{ user.salary }}</td>
           <td>
             <!-- Edit and Delete Buttons as Icons -->
             <i class="fas fa-edit action-icon" @click="openEditUserModal(user)"></i>

@@ -60,6 +60,19 @@
         <span>{{ user.devops }}</span>
       </div>
 
+      <!-- Salary Slider -->
+      <div class="form-group">
+        <label for="salary">Salary (€):</label>
+        <input
+          type="range"
+          id="salary"
+          v-model="user.salary"
+          min="0"
+          max="10"
+        />
+        <span>{{ user.salary }}</span>
+      </div>
+
       <!-- Submit / Save Button -->
       <div class="form-group button-group">
         <button @click="closeModal" class="cancel-button">Cancel</button>
@@ -93,7 +106,8 @@ export default {
         frontend: 0,
         backend: 0,
         test: 0,
-        devops: 0
+        devops: 0,
+        salary: 0
       }
     }
   },
@@ -121,7 +135,7 @@ export default {
       this.$emit('close') // Emit close event to parent
       // Reset user data if not in edit mode
       if (!this.editMode) {
-        this.user = { id: null, name: '', frontend: 0, backend: 0, test: 0, devops: 0 }
+        this.user = { id: null, name: '', frontend: 0, backend: 0, test: 0, devops: 0, salary: 0 }
       }
     }
   }
