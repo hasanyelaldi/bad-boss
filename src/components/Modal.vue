@@ -62,13 +62,13 @@
 
       <!-- Salary Slider -->
       <div class="form-group">
-        <label for="salary">Salary (€):</label>
+        <label for="salary">Monthly Salary (€):</label>
         <input
           type="range"
           id="salary"
           v-model="user.salary"
           min="0"
-          max="10"
+          max="10000"
         />
         <span>{{ user.salary }}</span>
       </div>
