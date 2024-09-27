@@ -3,36 +3,38 @@
     <h2>Users List</h2>
 
     <!-- Table to display the list of users -->
-    <table class="user-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Frontend</th>
-          <th>Backend</th>
-          <th>Test</th>
-          <th>DevOps</th>
-          <th>Salary</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.frontend }}</td>
-          <td>{{ user.backend }}</td>
-          <td>{{ user.test }}</td>
-          <td>{{ user.devops }}</td>
-          <td>{{ user.salary }}</td>
-          <td>
-            <!-- Edit and Delete Buttons as Icons -->
-            <i class="fas fa-edit action-icon" @click="openEditUserModal(user)"></i>
-            <i class="fas fa-trash action-icon" @click="removeUser(user.id)"></i>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Frontend</th>
+            <th>Backend</th>
+            <th>Test</th>
+            <th>DevOps</th>
+            <th>Monthly Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.frontend }}</td>
+            <td>{{ user.backend }}</td>
+            <td>{{ user.test }}</td>
+            <td>{{ user.devops }}</td>
+            <td>{{ user.salary }} €</td>
+            <td>
+              <!-- Edit and Delete Buttons as Icons -->
+              <i class="fas fa-edit action-icon" @click="openEditUserModal(user)"></i>
+              <i class="fas fa-trash action-icon" @click="removeUser(user.id)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- Button to open Add User modal -->
     <button @click="openAddUserModal" class="add-button">Add User</button>
@@ -107,13 +109,17 @@ export default {
 
 <style scoped>
 .users {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 40px auto;
-  background-color: #242424;
   padding: 20px;
   border-radius: 10px;
   color: white;
   border: 2px solid #646cff;
+}
+
+.table-container {
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 h2 {

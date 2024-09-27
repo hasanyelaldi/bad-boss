@@ -41,7 +41,7 @@ import Users from './components/Users.vue'
 }
 
 .main-screen {
-  width: 80%;
+  width: 100%;
 }
 
 .routes {
