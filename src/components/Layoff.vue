@@ -30,6 +30,7 @@
               <th>Backend</th>
               <th>Test</th>
               <th>DevOps</th>
+              <th>Monthly Salary</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +40,7 @@
               <td>{{ user.backend }}</td>
               <td>{{ user.test }}</td>
               <td>{{ user.devops }}</td>
+              <td>{{ user.salary }} €</td>
             </tr>
           </tbody>
         </table>
@@ -51,13 +53,7 @@
           <svg id="before-layoff-graph" viewBox="0 0 200 200"></svg>
         </div>
 
-        <div class="graph">
-          <h3>After Layoff</h3>
-          <svg id="after-layoff-graph" viewBox="0 0 200 200"></svg>
-        </div>
-      </div>
-
-      <div class="salary-comparison">
+        
         <div>
           <h3>Avg. Salary Before Layoff</h3>
           <p>{{ users?.length > 0 ? calculateAvarageSalary(users) : 0 }} €</p>
@@ -66,7 +62,14 @@
           <h3>Avg. Salary After Layoff</h3>
           <p>{{ users?.length > 0 ? calculateAvarageSalary(users.filter(user => !selectedUsers.includes(user))) : 0}} €</p>
         </div>
+
+        <div class="graph">
+          <h3>After Layoff</h3>
+          <svg id="after-layoff-graph" viewBox="0 0 200 200"></svg>
+        </div>
       </div>
+
+      
 
       <!-- Confirm Button -->
       <div v-if="selectedUsers.length > 0" class="confirm-container">
@@ -130,7 +133,7 @@ export default {
       return users.reduce((acc, user) => acc + Number(user.salary), 0);
     },
     calculateAvarageSalary(users) {
-      return this.calculateTotalSalary(users) / users.length;
+      return (this.calculateTotalSalary(users) / users.length).toFixed(2);
     },
     drawRadarChart(svgId, data) {
       const svg = document.getElementById(svgId);
@@ -205,16 +208,15 @@ h2 {
   text-align: center;
 }
 .layoff-page {
-  background-color: #242424;
   color: white;
   padding: 20px;
-  height: 100vh;
+  overflow-y: auto; 
 }
 
 .layoff-container {
-  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+  
 }
 
 .layoff-button {
@@ -265,14 +267,6 @@ h2 {
 svg {
   width: 200px;
   height: 200px;
-}
-
-.salary-comparison {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
 }
 
 .confirm-container {

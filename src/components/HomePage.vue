@@ -48,8 +48,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
-  background-color: #242424;
+  height: 80%;
+  width: 100%;
 }
 
 .content-container {
@@ -64,9 +64,10 @@ export default {
 
 .paragraph {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
   text-align: justify;
+  overflow-y: auto;
 }
 
 .left-paragraph h2,
